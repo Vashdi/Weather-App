@@ -56,7 +56,9 @@ const fetchWeatherData = async (params) => {
 
     if (!forecastDays) throw Error('Bad Request')
 
-    return forecastDays
+    const forecastInfoByDay = getForecastInfo(forecastDays)
+
+    return forecastInfoByDay
   } catch (err) {
     console.error(err.message)
   }
@@ -121,8 +123,10 @@ export const handleSearchByCoordButtonClick = async () => {
   }
 
   const params = [latValue, longValue].join(',')
-  const forecastDays = await fetchWeatherData(params)
-  const forecastInfoByDay = getForecastInfo(forecastDays)
+  const forecastInfoByDay = await fetchWeatherData(params)
+
+  if (!forecastInfoByDay) return
+
   resetCityName()
   createCardsElements(forecastInfoByDay)
 }
@@ -151,8 +155,9 @@ export const handleSearchByCityButtonClick = async () => {
     searchCityInput.classList.remove('error-border')
   }
 
-  const forecastDays = await fetchWeatherData(searchCityInput.value)
-  const forecastInfoByDay = getForecastInfo(forecastDays)
+  const forecastInfoByDay = await fetchWeatherData(searchCityInput.value)
+
+  if (!forecastInfoByDay) return
 
   resetCoordinates()
   createCardsElements(forecastInfoByDay)
