@@ -12,9 +12,12 @@ A simple WEATHER APP that displays the average temperature for each day of the w
 
 2. Open `index.html` in your browser.
 
-3. Enter a city name or coordinates in the input field and click "Search".
+3. To avoid CORS origin policy issues I downloaded Live Server extension and run index.html using Live server. 
+   (it shouldn't be needed when you test on browser)
 
-4. The average temperatures for the next two weeks will be displayed.
+4. Enter a city name or coordinates in the input field and click "Search".
+
+5. The average temperatures for the next two weeks will be displayed.
 
 ## API Key
 
