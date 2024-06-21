@@ -24,20 +24,24 @@ const getAvgTemp = (temperatures) => {
   return (sum / temperatures.length).toFixed(2)
 }
 
+const createTemperatureCard = (texts, temperature) => {
+  const div = document.createElement('div')
+  const text = document.createElement('p')
+  const icon = document.createElement('img')
+
+  text.textContent = temperature.tempText
+  icon.src = `https:${temperature.icon}`
+  icon.alt = '-'
+
+  div.appendChild(icon)
+  div.appendChild(text)
+
+  texts.appendChild(div)
+}
+
 const createTextsDiv = (texts, temperatures) => {
   temperatures.forEach((temperature) => {
-    const div = document.createElement('div')
-    const text = document.createElement('p')
-    const icon = document.createElement('img')
-
-    text.textContent = temperature.tempText
-    icon.src = `https:${temperature.icon}`
-    icon.alt = '-'
-
-    div.appendChild(icon)
-    div.appendChild(text)
-
-    texts.appendChild(div)
+    createTemperatureCard(texts, temperature)
   })
 }
 
